@@ -1,33 +1,9 @@
-import Card from "../components/Card"
 import config from "../../config";
-import { Github, Book, Youtube, Twitter } from "lucide-react";
-import { useEffect, useState } from "react";
-import request from "umi-request";
-import { marked } from "marked";
-import Skeleton from "../components/Skeleton";
+import { Book, Github, Mail, Twitter } from "lucide-react";
 import Animation from "../components/Animation";
 
 export default function HomeView() {
-  const { Name, Desc, HomeMD, GithubUsername, Avatar } = config;
-  const [introduce, setIntroduce] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(true)
-
-  useEffect(() => {
-    if (!HomeMD) {
-      return
-    }
-    request.get(
-      HomeMD === "Github" ?
-        `https://raw.githubusercontent.com/${GithubUsername}/${GithubUsername}/main/readme.md`
-        : HomeMD
-    ).then((res) => {
-      setIntroduce(marked.parse(res))
-    }).catch((err) => {
-      setIntroduce(err)
-    }).finally(() => {
-      setLoading(false)
-    })
-  }, [])
+  const { Name, Desc, Avatar } = config;
 
   return (
     <Animation id="home">
@@ -45,30 +21,13 @@ export default function HomeView() {
           </div>
         </div>
       </div>
-      {
-        HomeMD ?
-          loading ?
-            <Skeleton></Skeleton>
-            :
-            < Card
-              className="prose prose-slate max-w-none"
-              dangerouslySetInnerHTML={{ __html: introduce }} />
-          : null
-      }
     </Animation>
   )
 }
 
 function getSocialLinks(): { href: string, icon: JSX.Element }[] {
-  const { GithubUsername, BlogUrl, YoutubeUrl, TwitterUrl } = config
+  const { GithubUsername, BlogUrl, Email, TwitterUrl } = config
   const result = []
-  if (GithubUsername) {
-    result.push({
-      href: `https://github.com/${GithubUsername}`,
-      icon: <Github />,
-    })
-  }
-
   if (BlogUrl) {
     result.push({
       href: BlogUrl,
@@ -76,10 +35,17 @@ function getSocialLinks(): { href: string, icon: JSX.Element }[] {
     })
   }
 
-  if (YoutubeUrl) {
+  if (Mail) {
     result.push({
-      href: YoutubeUrl,
-      icon: <Youtube />,
+      href: 'mailto:' + Email,
+      icon: <Mail />,
+    })
+  }
+
+  if (GithubUsername) {
+    result.push({
+      href: `https://github.com/${GithubUsername}`,
+      icon: <Github />,
     })
   }
 

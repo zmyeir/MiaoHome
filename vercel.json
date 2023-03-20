@@ -4,10 +4,6 @@
     },
     "rewrites": [
         {
-            "source": "/bili/(.*)",
-            "destination": "/api/bili"
-        },
-        {
             "source": "/(.*)",
             "destination": "/index.html"
         }

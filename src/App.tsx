@@ -1,7 +1,6 @@
 import { Route, Routes, Link, useLocation, Outlet } from "react-router-dom";
-import { Home, Github, Book, Film } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import BangumiView from "./view/BangumiView";
+import { Book, Home, Ghost, Github } from "lucide-react";
+import ProfileView from "./view/ProfileView";
 import BlogView from "./view/BlogView";
 import GithubView from "./view/GithubView";
 import HomeView from "./view/HomeView";
@@ -27,7 +26,7 @@ export default function App() {
           <Route path="/" element={<HomeView />}></Route>
           <Route path="/github" element={<GithubView />}></Route>
           <Route path="/blog" element={<BlogView />}></Route>
-          <Route path="/bangumi" element={<BangumiView />}></Route>
+          <Route path="/profile" element={<ProfileView />}></Route>
         </Routes>
       </div>
       <Nav />
@@ -41,7 +40,7 @@ function Nav() {
     { to: "/", text: "Home", icon: Home },
     { to: "/github", text: "Github", icon: Github },
     { to: "/blog", text: "Blog", icon: Book },
-    { to: "/bangumi", text: "Bangumi", icon: Film },
+    { to: "/profile", text: "Profile", icon: Ghost },
   ]
   const location = useLocation()
   return (

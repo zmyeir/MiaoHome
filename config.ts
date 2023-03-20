@@ -19,14 +19,11 @@ export default {
     // 博客链接
     BlogUrl: "https://blog.0u0.ren",
 
-    // 油管链接
-    YoutubeUrl: "https://www.youtube.com/channel/UCEDJlXVGVHClXL_ihWsAfKw",
-
     // 推特链接
     TwitterUrl: "https://twitter.com/MiaoMint_",
 
-    // B站UID
-    BilibiliUid: "52625050",
+    // Email
+    Email: "test@test",
 
     // 默认 /home.md 
     // null 则不显示
